@@ -11,8 +11,8 @@
   DTS:LocaleID="5130"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{A8C613C8-FDBA-4A6C-9E57-24BE4244EC53}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{0F0B8BDA-5FDD-46E5-9642-CBEBC7514ABE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -47,7 +47,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[stores]</property>
+                  name="OpenRowset">[dbo].[DimStores]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -260,7 +260,7 @@
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[stores] SET [city] = ?,[email] = ?,[phone] = ?,[state] = ?,[store_name] = ?,[street] = ?,[zip_code] = ? WHERE [store_id] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[DimStores] SET [city] = ?,[email] = ?,[phone] = ?,[state] = ?,[store_name] = ?,[street] = ?,[zip_code] = ? WHERE [store_id] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -502,7 +502,7 @@
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[stores] SET [city] = ?,[email] = ?,[phone] = ?,[state] = ?,[store_name] = ?,[street] = ?,[zip_code] = ? WHERE [store_id] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[DimStores] SET [city] = ?,[email] = ?,[phone] = ?,[state] = ?,[store_name] = ?,[street] = ?,[zip_code] = ? WHERE [store_id] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -738,7 +738,7 @@
                   dataType="System.String"
                   description="Specifies the SELECT statement used to create a schema rowset."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [city], [email], [phone], [state], [store_id], [store_name], [street], [zip_code] FROM [dbo].[stores]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [city], [email], [phone], [state], [store_id], [store_name], [street], [zip_code] FROM [dbo].[DimStores]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
@@ -746,7 +746,7 @@
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
-                  name="UpdateChangingAttributeHistory">false</property>
+                  name="UpdateChangingAttributeHistory">true</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
@@ -1482,7 +1482,7 @@
           type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;ConnectionID&gt;{FFBCE662-B2EE-4909-99AA-D9A7F2FBB4B0}&lt;/ConnectionID&gt;
-  &lt;TableName&gt;[dbo].[stores]&lt;/TableName&gt;
+  &lt;TableName&gt;[dbo].[DimStores]&lt;/TableName&gt;
   &lt;InputToColumnsCollection&gt;
     &lt;InputColumnToDBColumn&gt;
       &lt;IdentificationString&gt;Stores.Outputs[OLE DB Source Output].Columns[city]&lt;/IdentificationString&gt;
@@ -1539,7 +1539,7 @@
     &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 1&lt;/anyType&gt;
   &lt;/GeneratedComponentsIdentificationStrings&gt;
   &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
-  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
   &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
   &lt;CurrentIndicatorColumn /&gt;
   &lt;InferredIndicatorColumn /&gt;

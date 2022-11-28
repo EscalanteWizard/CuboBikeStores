@@ -11,8 +11,8 @@
   DTS:LocaleID="5130"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{9DB76F22-F0CC-4B16-96F1-D64907A55EB3}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{FF781211-C2EB-41E7-96E3-BEA42F4ADA27}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -151,6 +151,40 @@
                       cachedName="staff_id"
                       externalMetadataColumnId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[staff_id]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[staff_id]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].Columns[item_id]"
+                      cachedDataType="i4"
+                      cachedName="item_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[item_id]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[item_id]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].Columns[quantity]"
+                      cachedDataType="i4"
+                      cachedName="quantity"
+                      externalMetadataColumnId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantity]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[quantity]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].Columns[list_price]"
+                      cachedDataType="numeric"
+                      cachedName="list_price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[list_price]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[list_price]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].Columns[discount]"
+                      cachedDataType="numeric"
+                      cachedName="discount"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[discount]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -186,6 +220,30 @@
                       refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[staff_id]"
                       dataType="i4"
                       name="staff_id" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[item_id]"
+                      dataType="i4"
+                      name="item_id" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantity]"
+                      dataType="i4"
+                      name="quantity" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[list_price]"
+                      dataType="numeric"
+                      name="list_price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
+                      dataType="numeric"
+                      name="discount"
+                      precision="4"
+                      scale="2" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -232,7 +290,7 @@
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[orders] SET [customer_id] = ?,[order_date] = ?,[order_status] = ?,[required_date] = ?,[shipped_date] = ?,[staff_id] = ?,[store_id] = ? WHERE [order_id] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[orders] SET [discount] = ?,[list_price] = ?,[order_date] = ?,[order_status] = ?,[quantity] = ?,[required_date] = ?,[shipped_date] = ? WHERE [customer_id] = ? AND [item_id] = ? AND [order_id] = ? AND [product_id] = ? AND [staff_id] = ? AND [store_id] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -258,57 +316,93 @@
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[customer_id]"
                       cachedDataType="i4"
                       cachedName="customer_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[discount]"
+                      cachedDataType="numeric"
+                      cachedName="discount"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[discount]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[item_id]"
+                      cachedDataType="i4"
+                      cachedName="item_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[item_id]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[list_price]"
+                      cachedDataType="numeric"
+                      cachedName="list_price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[list_price]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[order_date]"
                       cachedDataType="dbDate"
                       cachedName="order_date"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[order_date]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[order_id]"
                       cachedDataType="i4"
                       cachedName="order_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[order_id]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[order_status]"
                       cachedDataType="ui1"
                       cachedName="order_status"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[order_status]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[quantity]"
+                      cachedDataType="i4"
+                      cachedName="quantity"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[quantity]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[required_date]"
                       cachedDataType="dbDate"
                       cachedName="required_date"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[required_date]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[shipped_date]"
                       cachedDataType="dbDate"
                       cachedName="shipped_date"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[shipped_date]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[staff_id]"
                       cachedDataType="i4"
                       cachedName="staff_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[staff_id]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].Columns[store_id]"
                       cachedDataType="i4"
                       cachedName="store_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[store_id]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="i4"
-                      name="Param_0">
+                      dataType="numeric"
+                      name="Param_0"
+                      precision="4"
+                      scale="2">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -318,18 +412,20 @@
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      dataType="dbDate"
-                      name="Param_1">
+                      dataType="numeric"
+                      name="Param_1"
+                      precision="10"
+                      scale="2">
                       <properties>
                         <property
                           dataType="System.Int32"
                           description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
+                          name="DBParamInfoFlags">81</property>
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="ui1"
+                      dataType="dbDate"
                       name="Param_2">
                       <properties>
                         <property
@@ -340,7 +436,7 @@
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      dataType="dbDate"
+                      dataType="ui1"
                       name="Param_3">
                       <properties>
                         <property
@@ -351,8 +447,19 @@
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      dataType="dbDate"
+                      dataType="i4"
                       name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="dbDate"
+                      name="Param_5">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -361,31 +468,75 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      dataType="i4"
-                      name="Param_5">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
-                      dataType="i4"
+                      dataType="dbDate"
                       name="Param_6">
                       <properties>
                         <property
                           dataType="System.Int32"
                           description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
+                          name="DBParamInfoFlags">65</property>
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
                       dataType="i4"
                       name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="i4"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      dataType="i4"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      dataType="i4"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      dataType="i4"
+                      name="Param_11">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      dataType="i4"
+                      name="Param_12">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -446,7 +597,7 @@
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[orders] SET [customer_id] = ?,[order_date] = ?,[order_status] = ?,[required_date] = ?,[shipped_date] = ?,[staff_id] = ?,[store_id] = ? WHERE [order_id] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[orders] SET [order_date] = ?,[order_status] = ?,[required_date] = ?,[shipped_date] = ? WHERE [customer_id] = ? AND [item_id] = ? AND [order_id] = ? AND [product_id] = ? AND [staff_id] = ? AND [store_id] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -472,67 +623,79 @@
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[customer_id]"
                       cachedDataType="i4"
                       cachedName="customer_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[item_id]"
+                      cachedDataType="i4"
+                      cachedName="item_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[item_id]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[order_date]"
                       cachedDataType="dbDate"
                       cachedName="order_date"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[order_date]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[order_id]"
                       cachedDataType="i4"
                       cachedName="order_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[order_id]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[order_status]"
                       cachedDataType="ui1"
                       cachedName="order_status"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[order_status]" />
+                    <inputColumn
+                      refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[product_id]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[required_date]"
                       cachedDataType="dbDate"
                       cachedName="required_date"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[required_date]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[shipped_date]"
                       cachedDataType="dbDate"
                       cachedName="shipped_date"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[shipped_date]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[staff_id]"
                       cachedDataType="i4"
                       cachedName="staff_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[staff_id]" />
                     <inputColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[store_id]"
                       cachedDataType="i4"
                       cachedName="store_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      externalMetadataColumnId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[store_id]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="i4"
+                      dataType="dbDate"
                       name="Param_0">
                       <properties>
                         <property
                           dataType="System.Int32"
                           description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
+                          name="DBParamInfoFlags">65</property>
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      dataType="dbDate"
+                      dataType="ui1"
                       name="Param_1">
                       <properties>
                         <property
@@ -543,7 +706,7 @@
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="ui1"
+                      dataType="dbDate"
                       name="Param_2">
                       <properties>
                         <property
@@ -565,13 +728,13 @@
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      dataType="dbDate"
+                      dataType="i4"
                       name="Param_4">
                       <properties>
                         <property
                           dataType="System.Int32"
                           description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
+                          name="DBParamInfoFlags">81</property>
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
@@ -600,6 +763,28 @@
                       refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
                       dataType="i4"
                       name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="i4"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      dataType="i4"
+                      name="Param_9">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -667,7 +852,8 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select orders.order_id,orders.customer_id,orders.order_status,orders.order_date,orders.required_date,orders.shipped_date,orders.store_id,orders.staff_id,order_items.item_id,order_items.product_id,order_items.quantity,order_items.list_price,order_items.discount from orders 
+inner join order_items on order_items.order_id=orders.order_id</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -684,7 +870,7 @@
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">2</property>
                 <property
                   dataType="System.String"
                   description="The mappings between the parameters in the SQL command and variables."
@@ -775,6 +961,55 @@
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[staff_id]"
                       name="staff_id"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[item_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[item_id]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[item_id]"
+                      name="item_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[quantity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[quantity]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[quantity]"
+                      name="quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[list_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[list_price]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[list_price]"
+                      name="list_price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[discount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[discount]"
+                      name="discount"
+                      precision="4"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -810,6 +1045,30 @@
                       refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[staff_id]"
                       dataType="i4"
                       name="staff_id" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[item_id]"
+                      dataType="i4"
+                      name="item_id" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[quantity]"
+                      dataType="i4"
+                      name="quantity" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[list_price]"
+                      dataType="numeric"
+                      name="list_price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                      dataType="numeric"
+                      name="discount"
+                      precision="4"
+                      scale="2" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -858,6 +1117,35 @@
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[staff_id]"
                       name="staff_id" />
                     <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[item_id]"
+                      dataType="i4"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[item_id]"
+                      name="item_id" />
+                    <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      dataType="i4"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[quantity]"
+                      dataType="i4"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[quantity]"
+                      name="quantity" />
+                    <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[list_price]"
+                      dataType="numeric"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[list_price]"
+                      name="list_price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[discount]"
+                      dataType="numeric"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[discount]"
+                      name="discount"
+                      precision="4"
+                      scale="2" />
+                    <outputColumn
                       refId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
                       lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
@@ -886,7 +1174,7 @@
                   dataType="System.String"
                   description="Specifies the SELECT statement used to create a schema rowset."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [customer_id], [order_date], [order_id], [order_status], [required_date], [shipped_date], [staff_id], [store_id] FROM [dbo].[orders]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [customer_id], [item_id], [order_date], [order_id], [order_status], [product_id], [required_date], [shipped_date], [staff_id], [store_id] FROM [dbo].[orders]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
@@ -894,7 +1182,7 @@
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
-                  name="UpdateChangingAttributeHistory">false</property>
+                  name="UpdateChangingAttributeHistory">true</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
@@ -934,19 +1222,6 @@
                   refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
                   name="Slowly Changing Dimension Input">
                   <inputColumns>
-                    <inputColumn
-                      refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[customer_id]"
-                      cachedDataType="i4"
-                      cachedName="customer_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[customer_id]"
-                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[customer_id]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          name="ColumnType"
-                          typeConverter="ColumnType">2</property>
-                      </properties>
-                    </inputColumn>
                     <inputColumn
                       refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[order_date]"
                       cachedDataType="dbDate"
@@ -1013,19 +1288,6 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[staff_id]"
-                      cachedDataType="i4"
-                      cachedName="staff_id"
-                      externalMetadataColumnId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[staff_id]"
-                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[staff_id]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          name="ColumnType"
-                          typeConverter="ColumnType">2</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[store_id]"
                       cachedDataType="i4"
                       cachedName="store_id"
@@ -1035,7 +1297,59 @@
                         <property
                           dataType="System.Int32"
                           name="ColumnType"
-                          typeConverter="ColumnType">2</property>
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[customer_id]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[item_id]"
+                      cachedDataType="i4"
+                      cachedName="item_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[item_id]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[item_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[product_id]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[product_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[staff_id]"
+                      cachedDataType="i4"
+                      cachedName="staff_id"
+                      externalMetadataColumnId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[staff_id]"
+                      lineageId="Package\ActualizarDatos\Orders.Outputs[OLE DB Source Output].Columns[staff_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
@@ -1045,6 +1359,10 @@
                       refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[customer_id]"
                       dataType="i4"
                       name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[item_id]"
+                      dataType="i4"
+                      name="item_id" />
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[order_date]"
                       dataType="dbDate"
@@ -1057,6 +1375,10 @@
                       refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[order_status]"
                       dataType="ui1"
                       name="order_status" />
+                    <externalMetadataColumn
+                      refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
                     <externalMetadataColumn
                       refId="Package\ActualizarDatos\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[required_date]"
                       dataType="dbDate"
@@ -1179,13 +1501,13 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="111,42"
-          Id="Package\ActualizarDatos\Orders"
-          TopLeft="256.5,5.49999999999989" />
-        <NodeLayout
           Size="209,42"
           Id="Package\ActualizarDatos\Slowly Changing Dimension"
           TopLeft="207.5,107.5" />
+        <NodeLayout
+          Size="111,42"
+          Id="Package\ActualizarDatos\Orders"
+          TopLeft="256.5,5.49999999999989" />
         <EdgeLayout
           Id="Package\ActualizarDatos.Paths[OLE DB Source Output]"
           TopLeft="312,47.4999999999999">
@@ -1346,8 +1668,26 @@
     &lt;InputColumnToDBColumn&gt;
       &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[customer_id]&lt;/IdentificationString&gt;
       &lt;ColumnName&gt;customer_id&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[discount]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;discount&lt;/ColumnName&gt;
       &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[item_id]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;item_id&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[list_price]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;list_price&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
     &lt;/InputColumnToDBColumn&gt;
     &lt;InputColumnToDBColumn&gt;
       &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[order_date]&lt;/IdentificationString&gt;
@@ -1368,6 +1708,18 @@
       &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
     &lt;/InputColumnToDBColumn&gt;
     &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[product_id]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;product_id&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[quantity]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;quantity&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
       &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[required_date]&lt;/IdentificationString&gt;
       &lt;ColumnName&gt;required_date&lt;/ColumnName&gt;
       &lt;KeyType&gt;None&lt;/KeyType&gt;
@@ -1382,14 +1734,14 @@
     &lt;InputColumnToDBColumn&gt;
       &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[staff_id]&lt;/IdentificationString&gt;
       &lt;ColumnName&gt;staff_id&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
     &lt;/InputColumnToDBColumn&gt;
     &lt;InputColumnToDBColumn&gt;
       &lt;IdentificationString&gt;Orders.Outputs[OLE DB Source Output].Columns[store_id]&lt;/IdentificationString&gt;
       &lt;ColumnName&gt;store_id&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
     &lt;/InputColumnToDBColumn&gt;
   &lt;/InputToColumnsCollection&gt;
   &lt;GeneratedComponentsIdentificationStrings&gt;
@@ -1398,7 +1750,7 @@
     &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 1&lt;/anyType&gt;
   &lt;/GeneratedComponentsIdentificationStrings&gt;
   &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
-  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
   &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
   &lt;CurrentIndicatorColumn /&gt;
   &lt;InferredIndicatorColumn /&gt;
